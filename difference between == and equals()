@@ -1,0 +1,51 @@
+class Student{
+    int sno;
+    String name;
+    int className;
+    public Student(int sno, String name, int className){
+        this.sno=sno;
+        this.name=name;
+        this.className=className;
+    }
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        else {
+            Student s=(Student)obj;
+            if(obj instanceof Student){
+                return this.sno==s.sno && this.name==s.name && this.className==s.className;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+}
+class Address{
+    
+}
+class HelloWorld {
+    public static void main(String[] args) {
+      Student obj1=new Student(1,"Ram",12);
+      Student obj2=new Student(2,"Shyam",12);
+      Student obj3=new Student(1,"Ram",12);
+      Student obj4=obj2;
+      System.out.println(obj1==obj2);//false
+      System.out.println(obj1.equals(obj2));//false
+      
+      System.out.println(obj1.equals(obj3));//true it compares the data
+      System.out.println(obj2==obj4);//true bcoz address is same
+      
+      System.out.println(obj2.equals(obj4));//true
+      System.out.println(null.equals(null));//null pointer exception
+      
+      System.out.println(obj4.equals(null));//false
+      Address add=new Address();
+      System.out.println(add==obj2);//Compile time error bcoz imcompitable
+      System.out.println(add.equals(obj2));//false
+      System.out.println();
+    }
+}
+/* == operator always compares the variable references
+and equals() method compares the data in overriding method and object reference in object classs.*/
