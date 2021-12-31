@@ -1,0 +1,33 @@
+class Student{
+    public String m1(Object obj){
+        String name = obj.getClass().getName();
+        return name;
+    }
+}
+class Address{
+    
+}
+class Test extends Student{
+    
+}
+class HelloWorld {
+    public static void main(String[] args) {
+        String s1="ABC";
+        Integer s2=90;
+        
+        Student obj=new Student();
+        Address add=new Address();
+        Student add1=new Test();
+      
+        System.out.println(obj.m1(s1));//java.lang.String
+        System.out.println(obj.m1(s2));//java.lang.Integer
+        System.out.println(obj.m1(obj));//Student
+        System.out.println(obj.m1(add));//Address
+        System.out.println(obj.m1(add1));//Test
+        
+      
+    }
+}
+/* 
+getName():To retrieve class name of current object we are using these mathod
+*/
