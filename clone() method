@@ -1,0 +1,30 @@
+public class Example implements Cloneable{
+    int x=90,y=78;
+
+     public static void main(String []args) throws CloneNotSupportedException{
+         Example e1=new Example();
+         Example e2=(Example)e1.clone();
+         
+         System.out.println(e1==e2);
+         System.out.println(e1.hashCode()==e2.hashCode());
+         System.out.println();
+         
+         System.out.println(e1.x+"-----"+e1.y);
+         System.out.println(e2.x+"-----"+e2.y);
+         
+         e1.x=67;e1.y=76;
+         
+         System.out.println(e1.x+"-----"+e1.y);
+         System.out.println(e2.x+"-----"+e2.y);
+     }
+}
+
+/*
+clone() is used to copy the current object data into other object.
+
+Rules :
+1) class must implements Cloneable interface.
+2) both object have different hashcodes bcoz they gets different location in memory.
+3) It should handle CloneNotSupportedException.
+4) We must cast the object bcoz clone object is off object class type.
+*/
