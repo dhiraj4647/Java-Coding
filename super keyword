@@ -1,0 +1,66 @@
+class Example{
+    int x=90;
+    int y=12;
+    
+    void m1(){
+        System.out.println("I am m1 method");
+    }
+    
+    void m2(){
+        System.out.println("I am m2 method");
+    }
+    
+    void m3(){
+        System.out.println("I am m3 method");
+    }
+    
+}
+
+
+public class Main extends Example{
+    
+    int x=40;
+    int y=34;
+    void m1(){
+        System.out.println("I am m1 method");
+    }
+    
+    void m2(){
+        System.out.println("I am m2 method");
+    }
+    
+    void m3(){
+       
+        System.out.println("X:"+x);
+        System.out.println("Y:"+y);
+        System.out.println("X:"+ super.x);
+        System.out.println("Y:"+ super.y);
+        super.m2();
+        m1();
+        m2();
+        super.m3();
+    }
+    
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Main obj=new Main();
+		obj.m3();
+	
+		
+	}
+}
+
+/*
+output:
+Hello World
+X:40
+Y:34
+X:90
+Y:12
+I am m2 method
+I am m1 method
+I am m2 method
+I am m3 method
+
+super keyword is used to call the non static members from superclass
+*/
