@@ -1,0 +1,56 @@
+class A1{
+    static int a=m1();
+    public static int m1(){
+        System.out.println("first");
+        return 100;
+    }
+    
+    static{
+        System.out.println("Static block");
+        System.out.println("B:"+Main.b);
+        Main.main(null);
+        System.out.println("B:"+Main.getb());
+    }
+    
+    public static void main(String[] args) {
+		System.out.println("Main method");
+	}
+}
+
+public class Main extends A1
+{
+    static int b=m2();
+    public static int m2(){
+        System.out.println("Bfirst");
+        return 100;
+    }
+    
+    static{
+        System.out.println("Static block2");
+    }
+    
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+	}
+	
+	static int getb(){
+	    return b;
+	}
+}
+/*
+output:
+first
+Static block
+B:0
+Hello World
+B:0
+Bfirst
+Static block2
+Hello World
+ 
+
+In static members control flow the execution of in inheritance relation:
+1)first it will execute the static variables and static block from superclass to subclass.
+2)After that it will execute the main method from current loaded subclass if not found 
+it will execute it from superclass
+*/
