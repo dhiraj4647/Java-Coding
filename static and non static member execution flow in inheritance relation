@@ -1,0 +1,86 @@
+class Example{
+    static int a=m1();
+    
+    public static int m1(){
+        System.out.println("first");
+        return 100;
+    }
+    
+    static{
+        System.out.println("Static block");
+        
+    }
+    
+    int x=98;
+    
+    {
+        System.out.println("Non static block");
+        System.out.println("X:"+x);
+    }
+    
+    
+    Example(){
+        System.out.println("Super Constructor");
+    }
+    
+    void abc(){
+        System.out.println("Example abc method");
+    }
+    
+    void bbc(){
+        System.out.println("Example bbc method");
+    }
+    
+}
+
+
+public class Main extends Example
+{
+    static int b=m2();
+    
+    public static int m2(){
+        System.out.println("Bfirst");
+        return 100;
+    }
+    
+    static{
+        System.out.println("Static block2");
+    }
+    
+    int a=90;
+    {
+        System.out.println("Non static block1");
+        System.out.println("A:"+a);
+    }
+    
+    Main(){
+        System.out.println("Subclass Constructor");
+    }
+    
+    void abc(){
+        System.out.println("abc method");
+    }
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Main obj=new Main();
+		obj.abc();
+		obj.bbc();
+	}
+}
+
+/*
+output:
+first
+Static block
+Bfirst
+Static block2
+Hello World
+Non static block
+X:98
+Super Constructor
+Non static block1
+A:90
+Subclass Constructor
+abc method
+Example bbc method
+*/
