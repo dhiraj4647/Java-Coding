@@ -1,0 +1,50 @@
+class A1{
+    int x=98;
+    
+    {
+        System.out.println("Non static block");
+        System.out.println("X:"+x);
+    }
+    
+    
+    A1(){
+        System.out.println("Super Constructor");
+    }
+    
+}
+
+public class Main extends A1{
+    int a=90;
+    {
+        System.out.println("Non static block1");
+        System.out.println("A:"+a);
+    }
+    
+    Main(){
+        System.out.println("Subclass Constructor");
+    }
+    
+	public static void main(String[] args) {
+	    
+		System.out.println("Hello World");
+		A1 obj=new Main();
+	}
+	
+}
+/*
+output:
+Hello World
+Non static block
+X:98
+Super Constructor
+Non static block1
+A:90
+Subclass Constructor
+ 
+
+In Non static members control flow the execution of in inheritance relation:
+1)first it will execute the non static variables and non static block from superclass to subclass when we 
+create object.
+2)After that it will execute the main method from current loaded subclass if not found 
+it will execute it from superclass
+*/
