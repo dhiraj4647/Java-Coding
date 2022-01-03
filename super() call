@@ -1,0 +1,49 @@
+class Example{
+    int x=90;
+    
+    Example(){
+        System.out.println("first");
+        x=9;
+    }
+    
+    Example(int a){
+        System.out.println("first22");
+        x=9;
+    }
+}
+
+
+public class Main extends Example{
+    
+    int z=9;
+    
+    Main(){
+        System.out.println("second");
+        z=45;
+    }
+    
+    Main(int a){
+        super(10);
+        System.out.println("second33");
+    }
+    
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Main obj=new Main();
+		Main obj0=new Main(10);
+		
+	}
+}
+
+/*
+output:
+Hello World
+first
+second
+first22
+second33
+
+super() call is used to call the super class constructor and it placed in first position becoz 
+to identify and provide memory for super class variables and blocks before subclass execution.
+-We must use the super(10) like argument if we want call parameterized constructor from superclass.
+*/
