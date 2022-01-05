@@ -1,0 +1,39 @@
+class Example{
+    int x=50;
+    static int a=87;
+}
+class Sample extends Example{
+    int x=10;
+    static int a=90;
+} 
+public class Main 
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Example obj=new Sample();
+		Sample obj2=new Sample();
+		Example obj3=obj2;
+		System.out.println(obj3.x+"___"+obj3.a);
+		System.out.println(obj.x+"___"+obj.a);
+		System.out.println(obj2.x+"___"+obj2.a);
+		
+		
+		obj.x=12;obj.a=66;
+		System.out.println(obj.x+"___"+obj.a);
+		System.out.println(obj2.x+"___"+obj2.a);
+		System.out.println(obj3.x+"___"+obj3.a);
+	}
+}
+
+/* 
+output:
+Hello World
+50___87
+50___87
+10___90
+12___66
+10___90
+50___66
+When one of the object changed the value of static variable it gets 
+modified into all the variables.
+*/
