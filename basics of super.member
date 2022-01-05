@@ -1,0 +1,55 @@
+class Sample {
+    int x=10;
+    int y=90;
+    
+    void m1(){
+        System.out.println(x);
+        System.out.println(y);
+    }
+} 
+class Example extends Sample{
+    int x=66;
+    int y=77;
+    void m2(){
+        System.out.println(x+"-----"+super.x);
+        System.out.println(y+"-----"+super.y);
+    }
+    void m3(){
+        x=90;
+        y=80;
+        super.x=70;super.y=60;
+        System.out.println(x+"-----"+super.x);
+        System.out.println(y+"-----"+super.y);
+    }
+        
+}
+public class Main
+{
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Example A1=new Example();
+		Sample B1=A1;
+		System.out.println(A1.hashCode());
+		System.out.println(B1.hashCode());
+		
+		Example A2=new Example();
+		Sample B2=A2;
+		System.out.println(A2.hashCode());
+		System.out.println(B2.hashCode());
+		
+		A1.m3();
+		System.out.println(A1.x+"-----"+A1.y);//90---80
+		System.out.println(B1.x+"-----"+B1.y);//70---60
+		
+		System.out.println(B2.x+"-----"+B2.y);//10----90
+		System.out.println(A2.x+"-----"+A2.y);//66----77
+		
+		A1.m1();//x=70  y=60
+		A2.m1();//x=10  y=90
+		
+		A1.m2();//90-----70    80-----60
+
+		A2.m2();//66-----10    77-----90
+		
+	}
+}
