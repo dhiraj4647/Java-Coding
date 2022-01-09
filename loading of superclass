@@ -1,0 +1,43 @@
+class Sample {
+    static int x=10;
+    int y=90;
+
+    static{
+        System.out.println("Super class loaded");
+    }
+} 
+class Example extends Sample{
+    static int x=66;
+    int y=77;
+    static{
+        System.out.println("Sub class1 loaded");
+    }
+        
+}
+class Test extends Sample{
+    static int x=66;
+    int y=77;
+    static{
+        System.out.println("Sub class2 loaded");
+    }
+        
+}
+public class Main
+{
+    static{
+        System.out.println("I am loaded");
+    }
+	public static void main(String[] args) {
+		System.out.println("Hello World");
+		Example a1=new Example();
+		Test a2=new Test();
+	}
+}
+
+/*
+I am loaded
+Hello World
+Super class loaded
+Sub class1 loaded
+Sub class2 loaded
+*/
