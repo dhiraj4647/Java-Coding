@@ -1,0 +1,191 @@
+package exceptionHandling;
+
+class Test {
+	static void m1() {
+		// try catch finally with no exception
+		try {
+			System.out.println("In try");
+		} catch (ArithmeticException obj) {
+			System.out.println("In catch");
+		} finally {
+			System.out.println("In finally");
+		}
+		System.out.println("after try/catch/finally");
+	}
+
+	static void m2() {
+		// try catch finally with exception and catch block is matched
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} catch (ArithmeticException obj) {
+			System.out.println("In catch");
+		} finally {
+			System.out.println("In finally");
+		}
+		System.out.println("after try/catch/finally");
+	}
+
+	static void m3() {
+		// try catch finally with exception and catch block not matched
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} catch (NullPointerException obj) {
+			System.out.println("In catch");
+		} finally {
+			System.out.println("In finally");
+		}
+		System.out.println("after try/catch/finally");
+	}
+
+	static void m4() {
+		try {
+			System.out.println("In try");
+		} finally {
+			System.out.println("In finally");
+		}
+		System.out.println("after try/catch/finally");
+	}
+
+	static void m5() {
+		// try finally with exception
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} finally {
+			System.out.println("In finally");
+		}
+		System.out.println("after try/catch/finally");
+	}
+
+	// If we write the return statement in the finally block then the value is
+	// transfered to calling method
+	static int m6() {
+		try {
+			System.out.println("In try");
+			return 10;
+		} catch (ArithmeticException obj) {
+			System.out.println("In catch");
+			return 20;
+		} finally {
+			System.out.println("In finally");
+			return 70;
+		}
+	}
+
+	// If we write the return statement in the finally block and the exception is
+	// raised and catch block is matched then the value is
+	// transfered to calling method
+	static int m7() {
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} catch (ArithmeticException obj) {
+			System.out.println("In catch");
+			return 20;
+		} finally {
+			System.out.println("In finally");
+			return 80;
+		}
+		// System.out.println("Method");//this is unreachable statements
+	}
+
+//If there is return statement in finally block then exception raised in 
+	// try block is never propagated
+//to calling method because the returned value overrides the exception object.	
+	static int m8() {
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} catch (NullPointerException obj) {
+			System.out.println("In catch");
+
+		} finally {
+			System.out.println("In finally");
+			return 80;
+		}
+	}
+
+//In case of void method we can surpress the exception by just return; 
+	static void m9() {
+		try {
+			System.out.println("In try");
+			System.out.println(10 / 0);
+		} catch (NullPointerException obj) {
+			System.out.println("In catch");
+
+		} finally {
+			System.out.println("In finally");
+			return;
+		}
+	}
+
+}
+
+public class Test02 {
+
+	public static void main(String[] args) {
+		//Test.m1();
+		/*
+		output:- 
+		In try
+		In finally
+		after try/catch/finally
+		 */
+		//Test.m2();
+		/*
+		Output:
+		In try
+		In catch
+		In finally
+		after try/catch/finally		
+		 */
+		//Test.m3();
+		/*
+		In try
+		In finally
+		Exception in thread "main" java.lang.ArithmeticException: / by zero
+			at exceptionHandling.Test.m3(Test02.java:33)
+			at exceptionHandling.Test02.main(Test02.java:155)		
+		 */
+		//Test.m4();
+		/*
+		In try
+		In finally
+		after try/catch/finally		
+		 */
+		//Test.m5();
+		/*
+		 In try
+		In finally
+		Exception in thread "main" java.lang.ArithmeticException: / by zero
+			at exceptionHandling.Test.m5(Test02.java:55)
+			at exceptionHandling.Test02.main(Test02.java:169)
+				
+		 */
+		//Test.m6();
+		/*
+		In try
+		In finally		
+		 */
+		//Test.m7();
+		/*
+		In try
+		In catch
+		In finally		
+		 */
+		//Test.m8();
+		/*
+		In try
+		In finally		
+		 */
+		//Test.m9();
+		/*
+		In try
+		In finally		
+		 */
+		
+	}
+
+}
