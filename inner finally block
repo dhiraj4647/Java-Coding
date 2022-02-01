@@ -1,0 +1,209 @@
+package exceptionHandling;
+
+public class Test03 {
+	static void m1() {
+		try {
+			System.out.println("Outer try block");
+			try {
+				System.out.println("Inner try");
+			}
+			catch(NullPointerException obj){
+				System.out.println("Inner catch block");
+			}
+			finally {
+				System.out.println("Inner finally block");
+			}
+			System.out.println("Inner try catch finished");
+		}
+		catch(NullPointerException obj) {
+			System.out.println("Outer catch block");
+		}
+		finally {
+			System.out.println("Outer finally block");
+		}
+		System.out.println("Outer try catch finished");
+	}
+	
+	//return statement is placed in inner finally.
+	static int m2() {
+		try {
+			System.out.println("Outer try block");
+			try {
+				System.out.println("Inner try");
+			}
+			catch(NullPointerException obj){
+				System.out.println("Inner catch block");
+			}
+			finally {
+				System.out.println("Inner finally block");
+				return 10;
+			}
+		}
+		catch(NullPointerException obj) {
+			System.out.println("Outer catch block");
+		}
+		finally {
+			System.out.println("Outer finally block");
+		}
+		System.out.println("Outer try catch finished");
+		return 30;
+	}
+
+	//return statement is placed in outer finally.
+	static int m3() {
+		try {
+			System.out.println("Outer try block");
+			try {
+				System.out.println("Inner try");
+			}
+			catch(NullPointerException obj){
+				System.out.println("Inner catch block");
+			}
+			finally {
+				System.out.println("Inner finally block");
+			}
+			System.out.println("Inner try catch finished");
+		}
+		catch(NullPointerException obj) {
+			System.out.println("Outer catch block");
+		}
+		finally {
+			System.out.println("Outer finally block");
+			return 10;
+		}
+	}
+	
+	//Exception raised in inner try and no catch block is matched without return statement
+	static void m4() {
+		try {
+			System.out.println("Outer try block");
+			try {
+				System.out.println("Inner try");
+				System.out.println(10/0);
+			}
+			catch(NullPointerException obj){
+				System.out.println("Inner catch block");
+			}
+			finally {
+				System.out.println("Inner finally block");
+			}
+			System.out.println("Inner try catch finished");
+		}
+		catch(NullPointerException obj) {
+			System.out.println("Outer catch block");
+		}
+		finally {
+			System.out.println("Outer finally block");
+		}
+	}
+	
+	//Exception raised in inner try and no catch block is matched and return statement is placed in inner finally block
+		static int m5() {
+			try {
+				System.out.println("Outer try block");
+				try {
+					System.out.println("Inner try");
+					System.out.println(10/0);
+				}
+				catch(NullPointerException obj){
+					System.out.println("Inner catch block");
+				}
+				finally {
+					System.out.println("Inner finally block");
+					return 10;
+				}
+				//System.out.println("Inner try catch finished");
+			}
+			catch(NullPointerException obj) {
+				System.out.println("Outer catch block");
+			}
+			finally {
+				System.out.println("Outer finally block");
+				return 20;
+			}
+			//System.out.println("After outer try catch finally");
+			
+		}
+		
+		static int m6() {
+			try {
+				System.out.println("Outer try block");
+				System.out.println(10/0);
+				try {
+					System.out.println("Inner try");
+					System.out.println(10/0);
+				}
+				catch(NullPointerException obj){
+					System.out.println("Inner catch block");
+				}
+				finally {
+					System.out.println("Inner finally block");
+					return 10;
+				}
+				//System.out.println("Inner try catch finished");
+			}
+			catch(NullPointerException obj) {
+				System.out.println("Outer catch block");
+			}
+			finally {
+				System.out.println("Outer finally block");
+				return 20;
+			}
+			//System.out.println("After outer try catch finally");
+			
+		}
+		
+	public static void main(String[] args) {
+		//m1();
+		System.out.println();
+		//System.out.println(m2());
+		//System.out.println();
+		//System.out.println(m3());
+		//System.out.println();
+		//m4();
+		//System.out.println(m5());
+		System.out.println(m6());
+	}
+
+}
+/*
+ output:
+ 1)m1 method
+Outer try block
+Inner try
+Inner finally block
+Inner try catch finished
+Outer finally block
+Outer try catch finished
+2)m2 method
+Outer try block
+Inner try
+Inner finally block
+Outer finally block
+10
+3)m3 method
+Outer try block
+Inner try
+Inner finally block
+Inner try catch finished
+Outer finally block
+10
+4)m4 method
+Outer try block
+Inner try
+Inner finally block
+Outer finally block
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at exceptionHandling.Test03.m4(Test03.java:82)
+	at exceptionHandling.Test03.main(Test03.java:135)
+5)m5 method
+Outer try block
+Inner try
+Inner finally block
+Outer finally block
+20
+6)m6 method
+ Outer try block
+Outer finally block
+20
+*/
